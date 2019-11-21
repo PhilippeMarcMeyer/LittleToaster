@@ -1,15 +1,41 @@
-
-// shows a little message for a given duration 
+   
+//
 /*
-        var toast = new LittleToaster("parentToaster", "messageSucces", onParent); // init
-        toast.text("You are warned !"); // set text
-        toast.moveAt(200, 600); // set an absolute position
-        toast.showFor(4000); // disapear after 4s
+https://github.com/PhilippeMarcMeyer/LittleToaster v 0.1
+ shows a little message for a given duration 
+ 
+var toast = new LittleToaster("toaster") // init
+toast.text("<b>Message</b><br/>Hello World !"); // set text
+var w2 = window.innerWidth/2;
+toast.moveAt(w2 - 150, 100); // set an absolute position
+toast.showFor(3000, function () {
+
+});
  */
+ 
 function LittleToaster(htmlZone, toastId) {
+	let styles = [
+	"display:none",
+	"z-index:5000",
+	"font-size:13px",
+	"font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji",
+	"position:absolute",
+	"padding:10px 10px 10px 25px ",
+	"line-height:20px;",
+	"color:rgba(0, 0, 0, 0.9)",
+	"background-color:rgba(254, 254, 254, 1)",
+	"border-radius:8px",
+	"text-align:left",
+	"border: 1px solid #D5D6D7",
+	"vertical-align: middle",
+	"width:260px",
+	"box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4)"
+	];
+	
     if (!toastId) toastId = "littleToasterMsg";
-    this.style = "display:none;z-index:5000;position:absolute;padding:4px;color:white;background-color:rgba(90, 90, 90, 0.7);border-radius:2px;text-align:center;padding: 15px 10px 15px 10px;border: 1px solid #555; vertical-align: middle;width:300px;box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);"
+    this.style = styles.join(";")
     this.html = "<div id='" + toastId + "' style='" + this.style + "'></div>";
+		
     this.Pointer = document.getElementById(htmlZone);
 
     this.ToastPtr = null;

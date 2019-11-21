@@ -17,13 +17,13 @@
 
     <!-- internal scripts -->
 
-    <script type="text/javascript" src="work.js"></script>
+    <script type="text/javascript" src="littleToaster.js"></script>
 	
 	<script>
 		var btn = document.getElementById("btnToast");
 		btn.addEventListener("click",function(){
 			var toast = new LittleToaster("toaster") // init
-			toast.text("Hello World !"); // set text
+			toast.text("<b>main</b><br/>Hello World !"); // set text
 			var w2 = window.innerWidth/2;
 		
 			toast.moveAt(w2 - 150, 100); // set an absolute position
