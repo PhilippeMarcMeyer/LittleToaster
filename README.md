@@ -3,7 +3,7 @@
 
 ![screen shot](https://raw.githubusercontent.com/PhilippeMarcMeyer/LittleToaster/master/Caption.png)
 
-Demo : https://philippemarcmeyer.github.io/LittleToaster/
+Demo : https://philippemarcmeyer.github.io/LittleToaster/index.html
 
 #### Instantiate :
 
