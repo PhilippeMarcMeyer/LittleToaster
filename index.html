@@ -44,11 +44,11 @@
     <script type="text/javascript" src="littleToaster.js"></script>
 	
 	<script>
-		var btn = document.getElementById("btnToast");
+		let btn = document.getElementById("btnToast");
 		btn.addEventListener("click",function(e){ // use the event to show the message relative to the button
 			let rect = e.target.getBoundingClientRect();
 
-			var toast = new LittleToaster() // init
+			let toast = new LittleToaster() // init
 			toast.text("<b>Message</b><br/>Hello World !"); // set text
 						
 			toast.moveAt(rect.right +20, rect.top -15 ); 
@@ -57,14 +57,14 @@
 			});
 		});
 		
-			var btn = document.getElementById("btnToastCentered");
-		btn.addEventListener("click",function(){
+		let btn2 = document.getElementById("btnToastCentered");
+		btn2.addEventListener("click",function(){
 
-			var toast = new LittleToaster() // init
+			let toast = new LittleToaster() // init
 			toast.text("<b>Message</b><br/>Hello World !"); // set text
 			
-			var w2 = window.innerWidth/2;
-			var h2 = window.innerHeight/2;
+			let w2 = window.innerWidth/2;
+			let h2 = window.innerHeight/2;
 			toast.moveAt(w2-120, h2); 
 			toast.showFor(3000, function () {
 			
