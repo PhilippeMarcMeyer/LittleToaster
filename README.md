@@ -8,16 +8,30 @@ Demo : https://philippemarcmeyer.github.io/LittleToaster/index.html
 #### Instantiate :
 
 ``` 
-const btn = document.getElementById("btnToast");
-btn.addEventListener("click",function(){
-	let toast = new LittleToaster("toaster") 
-	// init : toater is a id of a existing hidden div : <div id="toaster"></div>
-	toast.text("<b>main</b><br/>Hello World !"); // set text/html
-	let w2 = window.innerWidth/2;
+let btn = document.getElementById("btnToast");
+btn.addEventListener("click",function(e){ // use the event to show the message relative to the button
+	let rect = e.target.getBoundingClientRect();
 
-	toast.moveAt(w2 - 150, 100); // set an absolute position
+	let toast = new LittleToaster() // init
+	toast.text("<b>Message</b><br/>Hello World !"); // set text
+
+	toast.moveAt(rect.right +20, rect.top -15 ); 
 	toast.showFor(3000, function () {
-		// you can provide a call-back
+
+	});
+});
+
+let btn2 = document.getElementById("btnToastCentered");
+btn2.addEventListener("click",function(){
+
+	let toast = new LittleToaster() // init
+	toast.text("<b>Message</b><br/>Hello World !"); // set text
+
+	let w2 = window.innerWidth/2;
+	let h2 = window.innerHeight/2;
+	toast.moveAt(w2-120, h2); 
+	toast.showFor(3000, function () {
+
 	});
 });
 ``` 
