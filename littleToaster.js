@@ -1,19 +1,16 @@
    
-//
 /*
-https://github.com/PhilippeMarcMeyer/LittleToaster v 0.1
- shows a little message for a given duration 
- 
-var toast = new LittleToaster("toaster") // init
-toast.text("<b>Message</b><br/>Hello World !"); // set text
-var w2 = window.innerWidth/2;
-toast.moveAt(w2 - 150, 100); // set an absolute position
-toast.showFor(3000, function () {
-
-});
+LittleToaster v 0.15
+Copyright (C) Philippe Meyer 2019
+Distributed under the MIT License
+v0.15 : Shows toasters for a limited duration "à la Chrome-tabs look" 
+https://github.com/PhilippeMarcMeyer/LittleToaster
  */
  
-function LittleToaster(htmlZone, toastId) {
+function LittleToaster() {
+	let factory = this;
+	let zoneProvided = false;
+	let toastId = null;
 	let styles = [
 	"display:none",
 	"z-index:5000",
@@ -32,25 +29,50 @@ function LittleToaster(htmlZone, toastId) {
 	"box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4)"
 	];
 	
-    if (!toastId) toastId = "littleToasterMsg";
+	const prefixId = "littleToaster_";
+	const parentPrefixId = "littleToasterP_";
+	
+	let maxIdOffset = 0;
+	
+	let allReady =  document.querySelectorAll("[id^='"+prefixId+"']");
+	
+	if(allReady.length > 0){
+		allReady.forEach(function(x){
+			let arr = x.id.split("_");
+			if(arr.length == 2){
+				let cnt = parseInt(arr[1]);
+				if(!isNaN(cnt)){
+					if(cnt > maxIdOffset){
+						maxIdOffset = cnt;
+					}
+				}
+			}
+		});
+	}
+	toastId = prefixId + (maxIdOffset+1);
+
+	
     this.style = styles.join(";")
     this.html = "<div id='" + toastId + "' style='" + this.style + "'></div>";
 		
-    this.Pointer = document.getElementById(htmlZone);
+  
+	 let htmlZone = parentPrefixId + (maxIdOffset+1);
+	 this.Pointer = document.createElement("div");
+	 this.Pointer.setAttribute("id",htmlZone);
+	 
+	 document.body.insertAdjacentElement("beforebegin", this.Pointer);
+
 
     this.ToastPtr = null;
     if (this.Pointer) {
         this.Pointer.innerHTML = this.html;
-        if (this.Pointer.querySelectorAll) {
-            this.ToastPtr = this.Pointer.querySelectorAll("#" + toastId)[0];
-        } else {
-            this.ToastPtr = document.getElementById(toastId);
-        }
+        this.ToastPtr = document.getElementById(toastId);
     }
     // We need to stay absolute
     if (this.ToastPtr) {
         this.ToastPtr.style.position = "absolute";
     }
+	
     // ------- methods
     this.hide = function () {
         if (this.ToastPtr) {
@@ -85,20 +107,29 @@ function LittleToaster(htmlZone, toastId) {
             this.ToastPtr.addEventListener("click", function (event) {
                 self.hide();
                 if (callBack) callBack();
+				factory._destroy();
                 event.preventDefault();
             });
             setTimeout(function () {
                 self.hide();
                 if (callBack) callBack();
-
+				factory._destroy();
             }, millisecs);
-
         }
     }
+	this._destroy = function(){
+		if(factory.ToastPtr.parentNode){
+			if(zoneProvided){
+				factory.ToastPtr.remove();
+			}else{
+				factory.ToastPtr.parentNode.remove();
+			}			
+		}
+	}
     // set the text (you can use html)
     this.text = function (text) {
-        if (this.ToastPtr) {
-            this.ToastPtr.innerHTML = text;
+        if (factory.ToastPtr) {
+            factory.ToastPtr.innerHTML = text;
         }
     }
 }

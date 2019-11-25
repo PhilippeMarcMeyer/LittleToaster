@@ -5,13 +5,37 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>Little Toaster</title>
+	
+	<style>
+		 body{
+		font-family: "Roboto,Helvetica Neue",Helvetica,Arial,sans-serif; 
+	 }
+	 #container{
+		 padding-top: 0px;
+		 padding-left:50px;
+		 width:90%;
+	 }
+	 
+	h3 {
+		color: #2e44b9;
+		font-weight: bold;
+		font-size: 24px;
+	}
+	button{
+		margin-top:50px;
+		margin-left:30px;
+		width:200px;
+		height:28px;
+	}
+	</style>
 
 </head>
 <body>
 
     <div id="container">
-		<button id="btnToast">Show a toast</button>
-		<div id="toaster"></div>
+	<h3>Little Toaster Demo</h3>
+		<button id="btnToast">Show a toast on the right</button>
+		<button id="btnToastCentered">Show a toast centered</button>
     </div>
 
 
@@ -21,12 +45,27 @@
 	
 	<script>
 		var btn = document.getElementById("btnToast");
-		btn.addEventListener("click",function(){
-			var toast = new LittleToaster("toaster") // init
-			toast.text("<b>main</b><br/>Hello World !"); // set text
-			var w2 = window.innerWidth/2;
+		btn.addEventListener("click",function(e){ // use the event to show the message relative to the button
+			let rect = e.target.getBoundingClientRect();
+
+			var toast = new LittleToaster() // init
+			toast.text("<b>Message</b><br/>Hello World !"); // set text
+						
+			toast.moveAt(rect.right +20, rect.top -15 ); 
+			toast.showFor(3000, function () {
+			
+			});
+		});
 		
-			toast.moveAt(w2 - 150, 100); // set an absolute position
+			var btn = document.getElementById("btnToastCentered");
+		btn.addEventListener("click",function(){
+
+			var toast = new LittleToaster() // init
+			toast.text("<b>Message</b><br/>Hello World !"); // set text
+			
+			var w2 = window.innerWidth/2;
+			var h2 = window.innerHeight/2;
+			toast.moveAt(w2-120, h2); 
 			toast.showFor(3000, function () {
 			
 			});
