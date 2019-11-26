@@ -1,4 +1,4 @@
-# LittleToaster v 0.15
+# LittleToaster v 0.16
 ### shows a little message for a given duration, inpired by minimalistic toast that appear below the Chrome tabs
 
 ![screen shot](https://raw.githubusercontent.com/PhilippeMarcMeyer/LittleToaster/master/Caption2.png)
@@ -39,8 +39,12 @@ btn2.addEventListener("click",function(){
 #### History :
 
 v 0.01 : Ugly first experiment
+
 v 0.10 : Better css inpired by minimalistic toast that appear below the Chrome tabs
+
 v 0.15 : Multiple toasts at the same time. No more arguments
+
 v 0.16 : Call back does not fire twice (on click and timer)
+
 
 
