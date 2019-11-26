@@ -53,7 +53,7 @@ function LittleToaster() {
 
     toastId = prefixId + (maxIdOffset + 1);
 
-    this.alreadyGone = false;
+    this.callBack = null;
     this.style = styles.join(";")
     this.html = "<div id='" + toastId + "' style='" + this.style + "'></div>";
 
@@ -101,24 +101,21 @@ function LittleToaster() {
     }
     // fires a timer to hide the toast
     this.showFor = function (millisecs, callBack) {
-        if (this.ToastPtr) {
-            this.ToastPtr.style.display = "block";
-            var self = this;
-            this.ToastPtr.addEventListener("click", function (event) {
-                factory.alreadyGone = true;
-                self.hide();
-                if (callBack) callBack();
-                factory._destroy();
-                event.preventDefault();
-            });
+        factory.callBack = callBack;
+        if (factory.ToastPtr) {
+            factory.ToastPtr.style.display = "block";
+            factory.ToastPtr.addEventListener("click", factory._handleClick,false);
             setTimeout(function () {
-                if(!factory.alreadyGone){
-                    self.hide();
-                    if (callBack) callBack();
-                    factory._destroy();
-                }
+                factory.ToastPtr.removeEventListener("click",factory._handleClick);
+                factory.hide();
+                factory._destroy();
             }, millisecs);
         }
+    }
+    this._handleClick = function(){
+        factory.hide();
+        event.preventDefault();
+        if (factory.callBack) factory.callBack();
     }
     this._destroy = function () {
         if (factory.Pointer) {
