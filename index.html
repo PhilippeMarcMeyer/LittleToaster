@@ -28,11 +28,12 @@
             height:28px;
         }
         </style>
-
     </head>
-    
     <body>
-
+    <div id="menu">
+     <a class="btn-back" href="https://philippemarcmeyer.github.io/#vanillajs">Blog</a>
+    <a class="btn-back" href="https://github.com/PhilippeMarcMeyer/LittleToaster">Repo</a>
+    </div>
         <div id="container">
             <h3>Little Toaster Demo</h3>
             
@@ -55,18 +56,18 @@
                     // 
                 });
             });
-            
+
             let btn2 = document.getElementById("btnToastCentered");
             btn2.addEventListener("click",function(){
 
                 let toast = new LittleToaster() // init
-                toast.text("<b>Caution</b><br/>You have 2 orders pending !"); // set text
+                toast.text("<b>Message</b><br/>Hello World !"); // set text
                 
                 let w2 = window.innerWidth/2;
                 let h2 = window.innerHeight/2;
                 toast.moveAt(w2-120, h2); 
                 toast.showFor(3000, function () {
-                    alert("do something after");
+                
                 });
             });
         </script>
