@@ -1,4 +1,4 @@
-# LittleToaster v 0.16
+# LittleToaster v 0.16 WIP
 ### shows a little message for a given duration with optional callback, inpired by minimalistic toast that appear below the Chrome tabs
 
 ![screen shot](https://raw.githubusercontent.com/PhilippeMarcMeyer/LittleToaster/master/Caption2.png)
