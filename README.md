@@ -1,4 +1,4 @@
-# LittleToaster v 0.16 WIP
+# LittleToaster v 0.17
 ### shows a little message for a given duration with optional callback, inpired by minimalistic toast that appear below the Chrome tabs
 
 ![screen shot](https://raw.githubusercontent.com/PhilippeMarcMeyer/LittleToaster/master/Caption2.png)
@@ -29,6 +29,9 @@ btn2.addEventListener("click",function(){
 
 	let w2 = window.innerWidth/2;
 	let h2 = window.innerHeight/2;
+	let scrollingElement = document.scrollingElement || document.documentElement;
+	let scroll = document.scrollingElement.scrollTop;
+	h2 += scroll;
 	toast.moveAt(w2-120, h2); 
 	toast.showFor(3000, function () {
 
@@ -45,6 +48,8 @@ v 0.10 : Better css inpired by minimalistic toast that appear below the Chrome t
 v 0.15 : Multiple toasts at the same time. No more arguments
 
 v 0.16 : Call back does not fire twice (on click and timer)
+
+v 0.17 : Added the document scroll to the example of Toast centered on window
 
 
 

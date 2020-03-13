@@ -63,7 +63,7 @@
                             
                 toast.moveAt(rect.right +20, rect.top -15 ); 
                 toast.showFor(3000, function () {
-                    alert("Something to do");
+                   // alert("Something to do");
                 });
             });
 
@@ -75,9 +75,11 @@
                 
                 let w2 = window.innerWidth/2;
                 let h2 = window.innerHeight/2;
+                let scrollingElement = document.scrollingElement || document.documentElement;
+                let scroll = document.scrollingElement.scrollTop;
+                h2 += scroll;
                 toast.moveAt(w2-120, h2); 
                 toast.showFor(3000, function () {
-                
                 });
             });
         </script>
